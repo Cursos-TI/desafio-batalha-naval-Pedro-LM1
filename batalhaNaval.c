@@ -2,6 +2,47 @@
 
 #define TAMANHO 10
 #define NAVIO 3
+#define HABILIDADE 5
+
+
+// cone:
+void habilidadeCone(int tabuleiro[TAMANHO][TAMANHO], int LinhaCone, int ColunaCone) {
+    for(int i = 0; i < 3; i++){
+        for(int j = -i; j <= i; j++){
+            int x = LinhaCone + i;
+            int y = ColunaCone + j;
+            if(x >= 0 && x < TAMANHO && y >= 0 && y < TAMANHO){
+                tabuleiro[x][y] = HABILIDADE;
+            }
+        }
+    }
+}
+
+// cruz
+void habilidadeCruz(int tabuleiro[TAMANHO][TAMANHO], int LinhaCruz, int ColunaCruz){
+    for(int i = -1; i <= 1; i++){
+        for(int j = -2; j <= 2; j++){  
+            if(i == 0  || j == 0){
+                int x = LinhaCruz + i;
+                int y = ColunaCruz + j;
+                tabuleiro[x][y] = HABILIDADE;
+            }
+        }
+    }
+}
+
+// octaedro
+void habilidadeOctaedro(int tabuleiro[TAMANHO][TAMANHO], int LinhaOcta, int ColunaOcta){
+    for(int i = -1; i <= 1; i++){
+        for(int j = -1; j <= 1; j++){  
+            if(i == 0  || j == 0){
+                int x = LinhaOcta + i;
+                int y = ColunaOcta + j;
+                tabuleiro[x][y] = HABILIDADE;
+            }
+        }
+    }
+}
 
 
 int main(){
@@ -85,6 +126,11 @@ int main(){
             }
         }
     }
+
+    habilidadeCone(tabuleiro, 7, 7);
+    habilidadeCruz(tabuleiro, 1, 3);
+    habilidadeOctaedro(tabuleiro, 8, 3);
+
 
     // ====== TABULEIRO =======
     printf("\n  ");
